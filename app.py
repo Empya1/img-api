@@ -31,7 +31,7 @@ def save_img():
 	
 	data = request.json
 	
-	with open(os.path.join("a.jpg"), "wb") as p:
+	with open(os.path.join("/static/a.jpg"), "wb") as p:
 		t = data["image"]
 		p.write(t.encode())
 	
@@ -42,4 +42,4 @@ def save_img():
 def viewimg():
 	print(os.path.join("a.jpg"))
 		
-	return render_template("img.html", url=str(os.path.join("a.jpg")))
+	return render_template("img.html", url=str(os.path.join("/static/a.jpg")))
