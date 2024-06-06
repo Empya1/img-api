@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "SECRET KEY"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bla.sqlite3"
-
+app.config["UPLOADS_FOLDER"] = "/static"
 
 db = SQLAlchemy(app)
 
@@ -31,7 +31,7 @@ def save_img():
 	
 	data = request.json
 	
-	with open(os.path.join("/static/a.jpg"), "wb") as p:
+	with open(f"{app.config["UPLOADS_FOLDER"]}/a.jpg"), "wb") as p:
 		t = data["image"]
 		p.write(t.encode())
 	
@@ -42,4 +42,4 @@ def save_img():
 def viewimg():
 	print(os.path.join("a.jpg"))
 		
-	return render_template("img.html", url=str(os.path.join("/static/a.jpg")))
+	return render_template("img.html", url=str(app.config["UPLOADS_FOLDER"]}/a.jpg))
