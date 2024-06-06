@@ -7,12 +7,18 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "SECRET KEY"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bla.sqlite3"
+try:
+  os.mkdir("/static")
+		
+except:
+  print("failef to create static")
+	
 app.config["UPLOADS_FOLDER"] = "/static"
 
 db = SQLAlchemy(app)
 
 class Bla(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
+  id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String())
 	age = db.Column(db.Integer())
 	time = db.Column(db.String())
