@@ -42,4 +42,4 @@ def save_img():
 def viewimg():
 	print(os.path.join("a.jpg"))
 		
-	return render_template("img.html", url=str(app.config["UPLOADS_FOLDER"]}/a.jpg))
+	return render_template("img.html", url=str(app.config["UPLOADS_FOLDER"]/a.jpg))
