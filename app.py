@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request,render_template
+from flask import Flask, jsonify, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -32,7 +32,8 @@ def save_img():
 	data = request.json
 	
 	with open(os.path.join("a.jpg"), "wb") as p:
-		p.write(data["image"])
+		t = data["image"]
+		p.write(t.encode())
 	
 	return jsonify(data)
 
@@ -42,6 +43,3 @@ def viewimg():
 	print(os.path.join("a.jpg"))
 		
 	return render_template("img.html", url=str(os.path.join("a.jpg")))
-
-"""if __name__ == "__main__":	
-	app.run()"""
