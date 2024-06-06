@@ -31,7 +31,7 @@ def save_img():
 	
 	data = request.json
 	
-	with open(f"{app.config["UPLOADS_FOLDER"]}/a.jpg"), "wb") as p:
+	with open(f"{app.config["UPLOADS_FOLDER"]}/a.jpg", "wb") as p:
 		t = data["image"]
 		p.write(t.encode())
 	
