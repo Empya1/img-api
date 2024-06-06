@@ -29,7 +29,7 @@ def index():
 
 def save_img():
 	
-	data = request.json()
+	data = request.json
 	
 	with open(os.path.join("a.jpg"), "wb") as p:
 		p.write(data["image"])
