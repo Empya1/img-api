@@ -9,8 +9,9 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "SECRET KEY"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bla.sqlite3"
+app.config["UPLOAD_FOLDER"]= "uploads"
 try: 
-	os.mkdir("/static")
+	os.mkdir(app.config["UPLOAD_FOLDER"])
 	print("static created")
 		
 except:
@@ -37,16 +38,17 @@ def index():
 def save_img():
 	
 	try:
-		os.mkdir("/static")
+		os.mkdir(app.config["UPLOAD_FOLDER"])
 		
 	except:
 		print("failef to create static")
 	
 	data = request.json
 	
-	with open("/static/a.jpg", "wb") as p:
+	with open(f"""{app.config["UPLOAD_FOLDER"]}/a.jpg""", "wb") as p:
 		t = data["image"]
 		p.write(t.encode())
+		p.close()
 	
 	return jsonify(data)
 
@@ -55,4 +57,4 @@ def save_img():
 def viewimg():
 	print(os.path.join("a.jpg"))
 		
-	return render_template("img.html", url=str("/static/a.jpg"))
+	return render_template("img.html", url=str(f"""{app.config["UPLOAD_FOLDER"]}/a.jpg"""))
