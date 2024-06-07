@@ -46,7 +46,7 @@ def save_img():
 	
 	data = request.json
 	
-	image = Image.open(BytesIo(data["image"]))
+	image = Image.open(BytesIO(data["image"]))
 	image.save(f"""{app.config["UPLOAD_FOLDER"]}/b.jpg""")
 	
 	return jsonify(data)
