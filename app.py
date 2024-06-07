@@ -57,46 +57,4 @@ def save_img():
 def viewimg():
 	print(os.path.join("a.jpg"))
 		
-	return render_template("img.html", url=str(f"""{app.config["UPLOAD_FOLDER"]}/a.jpg"""))	
-	try:
-		os.mkdir(app.config["UPLOAD_FOLDER"])
-		
-	except:
-		print("failef to create upload folder")
-	
-	data = request.json
-	print(request.files)
-	
-	#image = Image.open(request.files)
-	#image.save(f"""{app.config["UPLOAD_FOLDER"]}/b.jpg""")
-	
-	return jsonify(data)
-
-@app.route("/view")
-
-def viewimg():
-	print(os.path.join("a.jpg"))
-		
-	return render_template("img.html", url=str(f"""{app.config["UPLOAD_FOLDER"]}/a.jpg"""))@app.route("/saveimg",methods=["POST"])
-
-def save_img():
-	
-	try:
-		os.mkdir(app.config["UPLOAD_FOLDER"])
-		
-	except:
-		print("failef to create upload folder")
-	
-	data = request.json
-	
-	image = Image.open(BytesIO(data["image"]))
-	image.save(f"""{app.config["UPLOAD_FOLDER"]}/b.jpg""")
-	
-	return jsonify(data)
-
-@app.route("/view")
-
-def viewimg():
-	print(os.path.join("a.jpg"))
-		
 	return render_template("img.html", url=str(f"""{app.config["UPLOAD_FOLDER"]}/a.jpg"""))
