@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
-
+from PIL import Image
+from io import BytesIO
 
 
 
@@ -10,13 +11,12 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "SECRET KEY"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bla.sqlite3"
 app.config["UPLOAD_FOLDER"]= "uploads"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 try: 
 	os.mkdir(app.config["UPLOAD_FOLDER"])
 	print("static created")
 		
 except:
-	print("failef to create static")
+	print("failef to create upload folder")
 
 db = SQLAlchemy(app)
 
@@ -42,14 +42,12 @@ def save_img():
 		os.mkdir(app.config["UPLOAD_FOLDER"])
 		
 	except:
-		print("failef to create static")
+		print("failef to create upload folder")
 	
 	data = request.json
 	
-	with open(f"""{app.config["UPLOAD_FOLDER"]}/a.jpg""", "wb") as p:
-		t = data["image"]
-		p.write(t.encode())
-		p.close()
+	image = Image.open(BytesIo(data["image"]))
+	image.save(f"""{app.config["UPLOAD_FOLDER"]}/b.jpg""")
 	
 	return jsonify(data)
 
