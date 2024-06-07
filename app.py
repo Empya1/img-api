@@ -44,7 +44,7 @@ def save_img():
 	except:
 		print("failef to create upload folder")
 	
-	data = request.json
+	data = {}
 	print(request.files)
 	
 	#image = Image.open(request.files)
