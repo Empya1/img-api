@@ -49,7 +49,7 @@ def save_img():
 	print(data.filename)
 	print(data.content_type)
 	
-	data.save(app.config["UPLOAD_FOLDER"]+"/"+ data.filename)
+	data.save(app.config["UPLOAD_FOLDER"]+"/"+ data.filename, content_type="image/jpg")
 	
 	#image = Image.open(BytesIo(data["image"]))
 	#image.save(f"""{app.config["UPLOAD_FOLDER"]}/b.jpg""")
