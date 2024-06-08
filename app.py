@@ -45,14 +45,14 @@ def save_img():
 		print("failef to create upload folder")
 	
 	data = request.files["image"]
-	print(data)
+	print(dir(data))
 	
-	data.save(os.path.join(app.config["UPLOAD_FOLDER"], "a.jpg"))
+	data.save(app.config["UPLOAD_FOLDER"],data.filename)
 	
 	#image = Image.open(BytesIo(data["image"]))
 	#image.save(f"""{app.config["UPLOAD_FOLDER"]}/b.jpg""")
 	
-	return jsonify({"oh yeah":"were fone"})
+	return """<img src="uploads/a.jpg" alt="a.jpg"></img>"""
 
 @app.route("/view")
 
