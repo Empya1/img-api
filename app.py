@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "SECRET KEY"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bla.sqlite3"
-app.config["UPLOAD_FOLDER"]= "uploads"
+app.config["STATIC_FOLDER"]= "static"
 try: 
 	os.mkdir(app.config["UPLOAD_FOLDER"])
 	print("static created")
@@ -45,20 +45,21 @@ def save_img():
 		print("failef to create upload folder")
 	
 	data = request.files["image"]
-	print(dir(data))
-	print(data.filename)
-	print(data.content_type)
+	print(data)
 	
-	data.save(app.config["UPLOAD_FOLDER"]+"/"+ data.filename, content_type="image/jpg")
+	data.save(app.config["STATIC_FOLDER"] + "/" + data.filename)
 	
 	#image = Image.open(BytesIo(data["image"]))
 	#image.save(f"""{app.config["UPLOAD_FOLDER"]}/b.jpg""")
 	
-	return """<img src="uploads/a.jpg" alt="a.jpg"></img>"""
+	return jsonify({"oh yeah":"were fone"})
 
 @app.route("/view")
 
 def viewimg():
 	print(os.path.join("a.jpg"))
 		
-	return render_template("img.html", url=str(os.path.join(app.config["UPLOAD_FOLDER"], "a.jpg")))
+	return render_template("img.html", fn="a.jpg")
+
+#if __name__ == "__main__":	
+	#app.run()
